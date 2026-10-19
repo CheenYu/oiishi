@@ -2,18 +2,19 @@
 
 > 个人全栈 AI 应用项目：用工程化方式解决多轮饮食推荐中的意图理解、信息澄清、候选检索、结果解释、安全控制与效果评估问题。
 
-Oiishi 不是一次 Prompt 调用包装出的聊天页面。项目将推荐过程拆分为多个职责明确的 Agent，并由状态机式 Orchestrator 统一编排；同时补齐了会话持久化、规则降级、链路追踪、人工标注与离线评估能力，让 LLM 应用的行为可以观察、解释和持续改进。
+项目将推荐过程拆分为多个职责明确的 Agent，并由状态机式 Orchestrator 统一编排；同时补齐了会话持久化、规则降级、链路追踪、人工标注与离线评估能力，让 LLM 应用的行为可以观察、解释和持续改进。
 
 ## 项目速览
 
-| 维度 | 内容 |
-| --- | --- |
-| 项目定位 | 面向日常场景的多轮餐食推荐与多餐规划助手 |
-| 核心问题 | 用户表达不完整、模型输出不稳定、推荐依据不可追踪、效果难评估 |
-| 技术方案 | 多 Agent 编排 + 会话状态机 + 检索重排 + 安全守卫 + Trace/Evaluation |
-| 技术栈 | Java 21、Spring Boot 3.3、AgentScope、MyBatis、MySQL 8、原生 Web |
+
+| 维度     | 内容                                                                                         |
+| -------- | -------------------------------------------------------------------------------------------- |
+| 项目定位 | 面向日常场景的多轮餐食推荐与多餐规划助手                                                     |
+| 核心问题 | 用户表达不完整、模型输出不稳定、推荐依据不可追踪、效果难评估                                 |
+| 技术方案 | 多 Agent 编排 + 会话状态机 + 检索重排 + 安全守卫 + Trace/Evaluation                          |
+| 技术栈   | Java 21、Spring Boot 3.3、AgentScope、MyBatis、MySQL 8、原生 Web                             |
 | 工程规模 | 80 个 Java 文件、7 个业务 Controller、29 个 Service/Component、5 套 Agent Prompt、6 张数据表 |
-| 我的工作 | 独立完成需求抽象、系统设计、后端与 Agent 编排、数据库、Web 页面、可观测与评估模块 |
+| 我的工作 | 独立完成需求抽象、系统设计、后端与 Agent 编排、数据库、Web 页面、可观测与评估模块            |
 
 ## 为什么做这个项目
 
@@ -136,15 +137,16 @@ Trace 不是普通日志，而是后续评估的数据源。项目从设计阶�
 
 ## 主要接口
 
-| 方法 | 路径 | 用途 |
-| --- | --- | --- |
-| `POST` | `/api/v1/diet/chat` | 多轮推荐、调整与规划 |
-| `POST` | `/api/v1/diet/sessions` | 创建会话 |
-| `GET/POST/PUT/DELETE` | `/api/v1/diet/meals/personal` | 管理个人餐食 |
-| `GET` | `/api/v1/diet/meals/public` | 查询公共餐食 |
-| `POST` | `/api/v1/diet/feedback` | 提交推荐反馈 |
-| `GET/PUT` | `/api/v1/diet/debug/traces...` | 查询及标注 Trace |
-| `POST` | `/api/v1/diet/evaluations` | 执行离线评估 |
+
+| 方法                  | 路径                           | 用途                 |
+| --------------------- | ------------------------------ | -------------------- |
+| `POST`                | `/api/v1/diet/chat`            | 多轮推荐、调整与规划 |
+| `POST`                | `/api/v1/diet/sessions`        | 创建会话             |
+| `GET/POST/PUT/DELETE` | `/api/v1/diet/meals/personal`  | 管理个人餐食         |
+| `GET`                 | `/api/v1/diet/meals/public`    | 查询公共餐食         |
+| `POST`                | `/api/v1/diet/feedback`        | 提交推荐反馈         |
+| `GET/PUT`             | `/api/v1/diet/debug/traces...` | 查询及标注 Trace     |
+| `POST`                | `/api/v1/diet/evaluations`     | 执行离线评估         |
 
 ## 本地运行
 
@@ -174,14 +176,15 @@ export DASHSCOPE_API_KEY='<DashScope API Key>'
 
 可选配置：
 
-| 环境变量 | 默认值 | 说明 |
-| --- | --- | --- |
-| `DB_URL` | `jdbc:mysql://localhost:3306/diet_db...` | JDBC 地址 |
-| `SERVER_PORT` | `8080` | 服务端口 |
-| `DIET_MAIN_MODEL` | `qwen-max` | 推荐与规划模型 |
-| `DIET_LIGHT_MODEL` | `qwen-turbo` | 意图与澄清模型 |
-| `DIET_MAX_HISTORY_TURNS` | `10` | 最大历史轮数 |
-| `DIET_LOG_LEVEL` | `INFO` | 项目日志级别 |
+
+| 环境变量                 | 默认值                                   | 说明           |
+| ------------------------ | ---------------------------------------- | -------------- |
+| `DB_URL`                 | `jdbc:mysql://localhost:3306/diet_db...` | JDBC 地址      |
+| `SERVER_PORT`            | `8080`                                   | 服务端口       |
+| `DIET_MAIN_MODEL`        | `qwen-max`                               | 推荐与规划模型 |
+| `DIET_LIGHT_MODEL`       | `qwen-turbo`                             | 意图与澄清模型 |
+| `DIET_MAX_HISTORY_TURNS` | `10`                                     | 最大历史轮数   |
+| `DIET_LOG_LEVEL`         | `INFO`                                   | 项目日志级别   |
 
 ### 3. 启动
 
@@ -189,7 +192,7 @@ export DASHSCOPE_API_KEY='<DashScope API Key>'
 mvn spring-boot:run
 ```
 
-浏览器访问 <http://localhost:8080>。
+浏览器访问 [http://localhost:8080](http://localhost:8080)。
 
 ## 项目结构
 
@@ -217,18 +220,12 @@ src/main/resources/
 └── static/         # 原生 Web 前端
 ```
 
-## 当前边界与下一步
+## TODO：
 
-当前版本定位为可本地运行的个人项目，重点验证 Agent Workflow、可观测和评估闭环。后续计划包括：
+当前版本重点验证 Agent Workflow、可观测和评估闭环。后续计划包括：
 
 - 增加自动化测试与标准化评测数据集；
 - 将 Session 锁从进程内方案演进为适配多实例部署的分布式方案；
 - 增加认证授权，隔离不同用户的餐食与 Trace 数据；
 - 引入缓存和异步任务，优化长链路延迟；
 - 补充 Docker Compose 与 CI/CD，降低演示和部署成本。
-
-## 安全说明
-
-项目不在代码中保存数据库密码或模型服务密钥，运行凭据必须通过环境变量注入。`.env`、本地配置、日志、证书和私钥均已加入忽略规则。
-
-> 本项目提供一般性的餐食推荐，不构成医疗诊断、治疗或个体化营养处方。
